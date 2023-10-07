@@ -1,0 +1,3 @@
+[submodule "day_2/git-katas"]
+	path = day_2/git-katas
+	url = https://github.com/eficode-academy/git-katas
