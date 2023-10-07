@@ -1,4 +1,37 @@
 
+
+## Demo 1: inspecting a VCF file
+
+We are going to follow the manual here https://eriqande.github.io/eca-bioinf-handbook/basic-handling-of-vcf-files.html
+
+But before, we need to install bcftools. We will use ~~conda~~ mamba for this purpose (we have not explained what any of this is, we will, but for now we use mamba as it is equivalent and faster).
+
+The first step will be to install mamba in the shell, for this purpose run the file `setup_micromamba.sh`.
+
+```
+bash setup_micromamba.sh
+```
+
+Now we will need to initialize micromamba:
+```
+microbamba activate
+``` 
+
+Now we can install bcftools
+```
+micromamba create --name bcftools bioconda::bcftools
+```
+
+And to activate the conda environment with bcfools:
+
+```
+micromamba activate bcftools
+```
+
+The data to use in the above manual is already downloaded and available in the `data` folder.
+
+
+
 ## Practical use case 1: gathering data from a genomic database
 
 We are going to fetch the assembled sequence of SARS-CoV-2 isolated in Wuhan in 2019. This will work as our reference genome for SARS-CoV-2.
@@ -187,20 +220,3 @@ The color coding of the mutations represents the Variant Allele Frequency (VAF).
 - 40M3D111M and 7S46M3D97M
 
 
-## Demo: inspecting a VCF file
-
-We are going to follow the manual here https://eriqande.github.io/eca-bioinf-handbook/basic-handling-of-vcf-files.html
-
-But before, we need to install bcftools. We will use conda for this purpose.
-
-```
-conda create --name bcftools bioconda::bcftools
-```
-
-And to activate the conda environment with bcfools:
-
-```
-conda activate bcftools
-```
-
-The data to use in the above manual is already downloaded and available in the data folder.

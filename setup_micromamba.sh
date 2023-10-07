@@ -9,14 +9,3 @@ curl -Ls https://micro.mamba.pm/api/micromamba/linux-64/latest | tar -xvj bin/mi
 # sourcing the bashrc file incorporates the changes into the running session.
 # better yet, restart your terminal!
 source ~/.bashrc
-
-# activates the base environment
-microbamba activate
-
-# defines channels
-micromamba config append channels bioconda
-micromamba config append channels conda-forge
-micromamba config append channels nodefaults
-micromamba config set channel_priority strict
-
-microbamba install --yes bcftools
