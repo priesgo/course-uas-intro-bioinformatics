@@ -114,5 +114,15 @@ float(g_count + c_count) / 29903
 ```
 
 
+## Practical use case 2: learning git
 
+We are going to follow the git course at https://github.com/eficode-academy/git-katas which is cloned in this folder.
+That course contains a comprehensive set of exercises with more detailed than we can afford in this course. I selected what I considered to be the basic.
 
+Follow the next exercises:
+- basic-commits
+- basic-staging
+- basic-branching
+- ff-merge
+- ignore
+- git-tag
