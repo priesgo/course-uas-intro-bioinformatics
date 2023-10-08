@@ -59,7 +59,7 @@ https://www.ebi.ac.uk/ena/browser/api/fasta?accessions=MN908947
 
 ## Step 3: now bring it all to Python
 
-Perform the same queries programatically:
+Perform the same queries from Python:
 ```
 import requests
 import json
@@ -126,3 +126,9 @@ Follow the next exercises:
 - ff-merge
 - ignore
 - git-tag
+
+**NOTE**: if the folder is empty is because this is a git submodule, a way of nesting other git repositories. Run the following:
+```
+git submodule init
+git submodule update
+```
