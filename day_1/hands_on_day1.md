@@ -85,18 +85,13 @@ Now, we should have an additional track with the individual mutations mutations.
 ### Exercises
 
 - What does the color coding of the mutations represent? (I suspect the color code may not be available in the web version...)
-The color coding of the mutations represents the Variant Allele Frequency (VAF). A mutation with all reads supporting the mutation will have one unique color, a mutations with only half of the reads supporting it will have one half in one color and another half in another color, etc.
 
 - Give me the VAF of mutation in position 3378?
-- 0.0365854
 
 - Which gene does the mutation at position 23403 affect? And which
-- S
 
 - What is the amino acid change and its position in the protein of mutation in genomic position 23403?
-- D614G
 
 - In position 17126 there is a deletion being called and it is supported only by two reads. Fetch the CIGAR string of the two reads supporting the deletion.
-- 40M3D111M and 7S46M3D97M
 
 - The genes in a virus are very close together, hence the stop codon of one gene and the start codon of the next are very close together. Take a screenshot with enough resolution that shows both stop and start codon.

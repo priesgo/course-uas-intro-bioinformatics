@@ -59,7 +59,7 @@ https://www.ebi.ac.uk/ena/browser/api/fasta?accessions=MN908947
 
 ## Step 3: now bring it all to Python
 
-Perform the same queries from Python:
+Open a Python interpreter and perform the same queries from Python:
 ```
 import requests
 import json
@@ -132,3 +132,8 @@ Follow the next exercises:
 git submodule init
 git submodule update
 ```
+
+
+## Practical use case 3: differential gene expression analysis
+
+See this notebook https://www.kaggle.com/code/raulgcova/differential-gene-expression

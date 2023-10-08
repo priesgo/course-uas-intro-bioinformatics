@@ -25,21 +25,22 @@ Install micromamba
 ## Day 2
 
 ### Session 1
-Computational genomic pipelines - part II
+Version control with git
+**Demo 1**: using git
 Online biological databases and genome browsers
-**Demo 1**: using biological databases
-**Demo 2**: online genome browsers
+**Demo 2**: using biological databases
+**Demo 3**: online genome browsers
 
 ### Session 2
+Computational genomic pipelines - part II
 Replicate and reproduce
+Evidences of the reproducibility crisis
 FAIR principles
 Open science, open source
-Version control with git
-**Demo 3**: using git
 
 ### Session 3 - hands on
-**Practical use case 1**: gathering data from a genomic database using a REST API
-**Practical use case 2**: git exercises following https://github.com/eficode-academy/git-katas
+**Practical use case 1**: git exercises following https://github.com/eficode-academy/git-katas
+**Practical use case 2**: gathering data from a genomic database using a REST API
 
 
 ## Day 3
