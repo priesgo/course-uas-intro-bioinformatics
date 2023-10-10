@@ -6,18 +6,26 @@ First follow the getting started guide in the README.md file to setup your acces
 
 We are going to follow the manual here https://eriqande.github.io/eca-bioinf-handbook/basic-handling-of-vcf-files.html
 
-But before, we need to install bcftools. We will use ~~conda~~ mamba for this purpose (we have not explained what any of this is, we will, but for now we use mamba as it is equivalent and faster).
+### Install micromamba
 
-The first step will be to install mamba in the shell, for this purpose run the file `setup_micromamba.sh`.
+But before, we need to install bcftools. We will use ~~conda~~ micromamba for this purpose (we have not explained what any of this is, we will, but for now we use mamba as it is equivalent and faster).
 
+The first step will be to install mamba in the shell, for this purpose run:
 ```
-bash setup_micromamba.sh
+curl -Ls https://micro.mamba.pm/api/micromamba/linux-64/latest | tar -xvj bin/micromamba
+```
+
+And now reload your environment:
+```
+source ~/.bashrc
 ```
 
 Now we will need to initialize micromamba:
 ```
 microbamba activate
 ``` 
+
+### Install BCFtools
 
 Now we can install bcftools
 ```
@@ -30,7 +38,19 @@ And to activate the conda environment with bcfools:
 micromamba activate bcftools
 ```
 
+### Follow the manual
+
+https://eriqande.github.io/eca-bioinf-handbook/basic-handling-of-vcf-files.html
+
 The data to use in the above manual is already downloaded and available in the `data` folder.
+
+### Exercises
+
+- How many mutations are in the VCF file?
+- How many SNVs are in the VCF file?
+- How many insertions are in the VCF file?
+- How many deletions are in the VCF file?
+- How many mutations are in the VCF file?
 
 
 ## Practical use case 2: Using a genomics viewer
