@@ -1,2 +1,3 @@
-day_4/work/*
-day_4/.nextflow/*
+**/work/*
+**/.nextflow/*
+**/.nextflow.log*
