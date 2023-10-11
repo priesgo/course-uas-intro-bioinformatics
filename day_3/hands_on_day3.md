@@ -71,21 +71,26 @@ Fill the script with the alignment and variant calling commands using the define
 
 ## Practical use case 2: develop a simple variant annotator in python
 
-Our aim now is to implement some custom code in Python that reads a VCF file and adds an arbitrary annotation to every mutation.
+Our aim now is to implement some custom code in Python that reads a VCF file and adds an 
+arbitrary annotation to every mutation.
 
-First, create the environment:
+We will use `cyvcf2` library to parse VCF files and `pybedtools` to parse BED files.
+We will also make a quick overview of the `pandas` library used to manage data tables.
+
+First, create the environment with these dependencies:
 ```
 micromamba create -f src/annotation.yaml
 ```
 
-The file `alignment.yaml` contains all the dependencies we need to perform the alignment: BWA 2 and samtools.
+The file `annotation.yaml` contains all the dependencies we need.
 
 Activate the environment:
 ```
 micromamba activate annotation
 ```
 
-This will be the skeleton of our annotation that reads a VCF file, iterates through every mutation and writes it back to another VCF.
+This will be the skeleton of our annotation that reads a VCF file, iterates through every mutation and writes it back to another VCF `src/annotation.py`.
+
 ```
 from cyvcf2 import VCF, Writer, Variant
 
@@ -99,7 +104,9 @@ for variant in vcf:
 vcf_writer.close()
 ```
 
-Now we want to read a bed file with some annotations and we put this in a convenient pandas dataframe:
+Now we want to read a BED file with some annotations and we put this in a convenient pandas dataframe.
+This BED file contains the SARS-CoV-2 protein domains.
+
 ```
 import pybedtools
 
@@ -108,7 +115,7 @@ intersect = bed.intersect('exercise.vcf.gz')
 df = intersect.to_dataframe()
 ```
 
-
+Given the dataframe and a genomic coordinate we can perform a match. This will be our annotation.
 ```
 match = df[(df.start <= variant.POS) & (df.end >= variant.POS)].name
 if match.shape[0] > 0:
@@ -116,8 +123,8 @@ if match.shape[0] > 0:
 ```
 
 
-
-Put it all together!
+If there is a match from the BED file we will put this into an INFO annotation.
+Beware that the description of the new INFO annotation has to be added to the VCF beforehand.
 ```
 from cyvcf2 import VCF, Writer, Variant
 import pybedtools
@@ -129,8 +136,9 @@ df = intersect.to_dataframe()
 
 
 vcf = VCF('exercise.vcf.gz')
-vcf_writer = Writer('annotated.vcf', vcf)
 vcf.add_info_to_header({'ID': 'pfam', 'Description':'', 'Type':'String', 'Number':1})
+vcf_writer = Writer('annotated.vcf', vcf)
+
 
 for variant in vcf:
     match = df[(df.start <= variant.POS) & (df.end >= variant.POS)].name
@@ -141,7 +149,4 @@ for variant in vcf:
 vcf_writer.close()
 ```
 
-
-
-
-
+Put it all together in the `src/annotation.py` and run it through one of our examples.
