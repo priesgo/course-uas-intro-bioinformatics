@@ -1,0 +1,11 @@
+name: script
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - bioconda::bwa-mem2=2.2.1
+  - bioconda::samtools=1.12
+  - conda-forge::gsl=2.7
+  - bioconda::bcftools=1.14
+  - bioconda::lofreq=2.1.5
