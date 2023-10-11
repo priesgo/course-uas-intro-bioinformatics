@@ -45,6 +45,8 @@ Activate the environment:
 micromamba activate variant_calling
 ```
 
+**NOTE**: make sure you deactivate the alignment environment before activating this one.
+
 Now run the following:
 ```
 lofreq call  \
@@ -67,6 +69,19 @@ There is a template of a bash script in `src/script.sh`.
 We want to avoid writing in the script paths to files so it is reusable for different samples, for that reason it uses input parameters.
 
 Fill the script with the alignment and variant calling commands using the defined parameters.
+
+To test the script we will use a micromamba environment that has all dependencies:
+```
+micromamba create -f src/script.yaml
+micromamba activate script
+```
+
+Then we will run the script with bash as follows:
+```
+bash src/script.sh my_reference.fasta my_fastq1.fastq my_fastq2.fastq my_results
+```
+
+This should create a file `my_results.vcf.gz`
 
 
 ## Practical use case 2: develop a simple variant annotator in python
@@ -105,7 +120,7 @@ vcf_writer.close()
 ```
 
 Now we want to read a BED file with some annotations and we put this in a convenient pandas dataframe.
-This BED file contains the SARS-CoV-2 protein domains.
+This BED file contains the SARS-CoV-2 protein domains from the pfam database.
 
 ```
 import pybedtools
@@ -124,29 +139,16 @@ if match.shape[0] > 0:
 
 
 If there is a match from the BED file we will put this into an INFO annotation.
-Beware that the description of the new INFO annotation has to be added to the VCF beforehand.
-```
-from cyvcf2 import VCF, Writer, Variant
-import pybedtools
 
-
-bed = pybedtools.BedTool('data/pfam_names.bed.gz')
-intersect = bed.intersect('exercise.vcf.gz')
-df = intersect.to_dataframe()
-
-
-vcf = VCF('exercise.vcf.gz')
-vcf.add_info_to_header({'ID': 'pfam', 'Description':'', 'Type':'String', 'Number':1})
-vcf_writer = Writer('annotated.vcf', vcf)
-
-
-for variant in vcf:
-    match = df[(df.start <= variant.POS) & (df.end >= variant.POS)].name
-    if match.shape[0] > 0:
-        variant.INFO["pfam"] = match.iloc[0]
-    vcf_writer.write_record(variant)
-
-vcf_writer.close()
-```
 
 Put it all together in the `src/annotation.py` and run it through one of our examples.
+
+Run your Python script as follows:
+```
+python src/annotation.py --input-vcf your.vcf.gz --output-vcf your_annotated.vcf.gz
+```
+
+Your output VCF should have some mutations annotated with the protein domain from pfam.
+
+Optionally, add a new parameter to the python script to pass the BED file.
+
