@@ -1,0 +1,9 @@
+name: variant_calling
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - conda-forge::gsl=2.7
+  - bioconda::bcftools=1.14
+  - bioconda::lofreq=2.1.5
