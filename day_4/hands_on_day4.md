@@ -14,6 +14,12 @@ Now move the nextflow binary to your bin folder so this is executable from anywh
 mv nextflow bin/
 ```
 
+or if bin not present
+
+```
+sudo mv nextflow /usr/local/bin/
+```
+
 ### Step 1: write the alignment and variant calling processes
 
 Open the workflow template `src/workflow.nf`. The parameters and the connection between processes of the 
@@ -46,7 +52,10 @@ THIS IS FAILING WITH micromamba! => just keep using the large environment, not i
 
 ### Step 3: add a step to the workflow using the Python annotator
 
-Create a subfolder `bin` under the folder `src`. Then copy your python script into that folder. 
+Create a subfolder `bin` under the folder `src`. Then copy your python script into that folder.
+
+Make sure the first line of your file is `#!/usr/bin/env python` and that the file has 
+execution permissions `chmod +x src/annotation.py`
 
 You will be able to call the script from a Nextflow process.
 
